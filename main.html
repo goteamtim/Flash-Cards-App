@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Flashcards</title>
+<link type="text/css" rel="stylesheet" href="main.css" />
+<script>
+function loadXMLDoc(){
+  var randomnumber=Math.floor(Math.random()*9);
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","main.php?curCard="+randomnumber+"&def=1",true);
+	xmlhttp.send();	
+	
+	xmlhttp.onreadystatechange=function()
+	  {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	    {
+	    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+	    }
+	  }
+
+}
+</script>
+</head>
+<body>
+	<div id="myDiv"><h2>Define</h2></div>
+<button id="flipButton" type="button" onclick="loadXMLDoc()">Define Term</button>
+</body>
+</html>
