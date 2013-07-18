@@ -1,5 +1,23 @@
 <?php
-  
+//connecting to mysql database	
+$testConnect = mysqli_connect("localhost","flash","mammoth04","flash_cards");
+	//check to verify that it is actually connected.
+	if(mysqli_connect_errno($testConnect))
+		{
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+	
+		$result = mysqli_query($testConnect,"SELECT * FROM PHP");
+		
+		while($row = mysqli_fetch_array($result))
+		{
+			echo $row['Term'] . " " . $row['Definition'];
+			echo "<br>";
+		}
+		//close the connection
+		mysqli_close($testConnect);
+		
+		
 	//defining the flash cards as multiple arrays
 	$phpFlashCards = array(
 		array("print_r()","Prints an array, whatever it consists of...multi-dimentional arrays or even objects"),
